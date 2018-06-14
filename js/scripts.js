@@ -38,17 +38,19 @@ function clickHandler() {
 
     (function(){
         var iWordsCount = words.length; 
-        var tt = document.getElementById("myT");
+        var tt = document.getElementById("tabPanel");
         tt.innerHTML = "";
         var htmlToAppend = "<thead><tr><th>Word</th><th>Frequency</th><th>Word Length</th></tr></thead><tbody>";
         let csvContent = "data:text/csv;charset=utf-8,Word,Frequency,Word Length\r\n";
         for (var i=0; i<iWordsCount; i++) {
             var word = words[i];
             console.log(word.frequency, word.text);
-            htmlToAppend += "<tr><td>" + word.text + "</td><td>" + word.frequency + "</td><td>" + word.text.length + "</td></tr>";
+            htmlToAppend += "<tr><td>" + word.text + "</td><td>" + word.frequency 
+                            + "</td><td>" + word.text.length + "</td></tr>";
             csvContent += word.text + "," + word.frequency + "," + word.text.length + "\r\n";
         }
-        tt.innerHTML = htmlToAppend + "</tbody>";
+        tt.innerHTML = '<table id="myT" class="table table-striped table-bordered table-hover">' 
+                        + htmlToAppend + "</tbody></table>";
         var encodedUri = encodeURI(csvContent);
         // deletes already created link
         var element = document.getElementsByTagName("a"), index;
@@ -60,7 +62,7 @@ function clickHandler() {
         });
         // creates new link
         var link = document.createElement("a");
-        link.setAttribute("class", "text-center");
+        link.setAttribute("class", "btn btn-link");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", "my_data.csv");
         link.innerHTML= "Download file";
