@@ -53,12 +53,22 @@ Paste text here
         var tt = document.getElementById("myT");
         tt.innerHTML = "";
         var htmlToAppend = "";
+        let csvContent = "data:text/csv;charset=utf-8,Word,Frequency\r\n";
         for (var i=0; i<iWordsCount; i++) {
             var word = words[i];
             console.log(word.frequency, word.text);
-            htmlToAppend += "<tr><td>" + word.frequency + "</td><td>" + word.text + "</td></tr>"
+            htmlToAppend += "<tr><td>" + word.text + "</td><td>" + word.frequency + "</td></tr>"
+            csvContent += word.text + "," + word.frequency + "\r\n";
         }
         tt.innerHTML = htmlToAppend;
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "my_data.csv");
+        link.innerHTML= "Click Here to download";
+        document.body.appendChild(link);
+
+        link.click();
 
     }());
     }
