@@ -52,13 +52,13 @@ Paste text here
         var iWordsCount = words.length; 
         var tt = document.getElementById("myT");
         tt.innerHTML = "";
-        var htmlToAppend = "";
-        let csvContent = "data:text/csv;charset=utf-8,Word,Frequency\r\n";
+        var htmlToAppend = "<tr><td>Word</td><td>Frequency</td><td>Word Length</td></td>";
+        let csvContent = "data:text/csv;charset=utf-8,Word,Frequency,Word Length\r\n";
         for (var i=0; i<iWordsCount; i++) {
             var word = words[i];
             console.log(word.frequency, word.text);
-            htmlToAppend += "<tr><td>" + word.text + "</td><td>" + word.frequency + "</td></tr>"
-            csvContent += word.text + "," + word.frequency + "\r\n";
+            htmlToAppend += "<tr><td>" + word.text + "</td><td>" + word.frequency + "</td><td>" + word.text.length + "</td></tr>";
+            csvContent += word.text + "," + word.frequency + "," + word.text.length + "\r\n";
         }
         tt.innerHTML = htmlToAppend;
         var encodedUri = encodeURI(csvContent);
