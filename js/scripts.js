@@ -40,7 +40,7 @@ function clickHandler() {
         var iWordsCount = words.length; 
         var tt = document.getElementById("myT");
         tt.innerHTML = "";
-        var htmlToAppend = "<tr><td>Word</td><td>Frequency</td><td>Word Length</td></td>";
+        var htmlToAppend = "<thead><tr><th>Word</th><th>Frequency</th><th>Word Length</th></tr></thead><tbody>";
         let csvContent = "data:text/csv;charset=utf-8,Word,Frequency,Word Length\r\n";
         for (var i=0; i<iWordsCount; i++) {
             var word = words[i];
@@ -48,13 +48,16 @@ function clickHandler() {
             htmlToAppend += "<tr><td>" + word.text + "</td><td>" + word.frequency + "</td><td>" + word.text.length + "</td></tr>";
             csvContent += word.text + "," + word.frequency + "," + word.text.length + "\r\n";
         }
-        tt.innerHTML = htmlToAppend;
+        tt.innerHTML = htmlToAppend + "</tbody>";
         var encodedUri = encodeURI(csvContent);
         // deletes already created link
         var element = document.getElementsByTagName("a"), index;
         for (index = element.length - 1; index >= 0; index--) {
             element[index].parentNode.removeChild(element[index]);
         }
+        $('#myT').DataTable({
+            responsive: true
+        });
         // creates new link
         var link = document.createElement("a");
         link.setAttribute("class", "text-center");
