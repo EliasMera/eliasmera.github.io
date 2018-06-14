@@ -50,6 +50,12 @@ function clickHandler() {
         }
         tt.innerHTML = htmlToAppend;
         var encodedUri = encodeURI(csvContent);
+        // deletes already created link
+        var element = document.getElementsByTagName("a"), index;
+        for (index = element.length - 1; index >= 0; index--) {
+            element[index].parentNode.removeChild(element[index]);
+        }
+        // creates new link
         var link = document.createElement("a");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", "my_data.csv");
@@ -57,6 +63,5 @@ function clickHandler() {
         document.body.appendChild(link);
 
         //link.click();
-
     }());
 }
