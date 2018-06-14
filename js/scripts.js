@@ -57,6 +57,7 @@ function clickHandler() {
         }
         // creates new link
         var link = document.createElement("a");
+        link.setAttribute("class", "text-center");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", "my_data.csv");
         link.innerHTML= "Download file";
