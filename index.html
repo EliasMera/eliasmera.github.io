@@ -12,9 +12,10 @@ Paste text here
 <script>
     function clickHandler() {
         var words = (function(){
-        var sWords = document.getElementById("tArea").value.toLowerCase().trim().replace(/[,;.]/g,'').split(/[\s\/]+/g).sort();
+        var sWords = document.getElementById("tArea").value.toLowerCase().trim().replace(/[\".,\/#!?¿¡$%\^&\*;:{}=\-_`~()]/g,'').split(/[\s\/]+/g).sort();
         var iWordsCount = sWords.length;
-        var ignore = ['and','the','to','a','of','for','as','i','with','it','is','on','that','this','can','in','be','has','if'];
+        var ignore = [];
+        //['and','the','to','a','of','for','as','i','with','it','is','on','that','this','can','in','be','has','if'];
         ignore = (function(){
             var o = {}; 
             var iCount = ignore.length;
